@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   err_handl.c                                        :+:      :+:    :+:   */
+/*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/22 01:06:01 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/22 01:17:47 by mhaddaou         ###   ########.fr       */
+/*   Created: 2022/05/20 04:00:06 by mhaddaou          #+#    #+#             */
+/*   Updated: 2022/05/22 01:40:17 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopher.h"
 
-void err_handl (int err)
+
+int main (int ac, char **av)
 {
-    if (err == 0)
-        ft_putstr_fd("ERROR : Wrong number of philosophers\n", 2);
-    if (err == 1)
-        ft_putstr_fd("ERROR : Wrong number of time_to_eat\n", 2);
-    if (err == 2)
-        ft_putstr_fd("ERROR : Wrong number of time_to_die\n",2);
-    if (err == 3)
-        ft_putstr_fd("ERROR : Wrong number of time_to_sleep\n", 2);
-    if (err == 4)
-        ft_putstr_fd("ERROR : Wrong num of must_eat\n", 2);
+    t_input input;
+    t_info info;
+    
+    if (ac ==  5 || ac == 6)
+    {
+        
+        av++;
+        if (get_info(ac, av, &info))
+            return (EXIT_FAILURE);
+        if (check_info(&info, ac))
+            return (EXIT_FAILURE);
+        init_all(&info, &input)
+    }
+    else
+        printf("non %d", ac);
+    
+    return (EXIT_SUCCESS);
 }
