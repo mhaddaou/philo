@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 04:00:25 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/22 03:50:28 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:48:21 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ typedef struct input
     int t_sleep;
     int last_meal; 
 }   t_input;
+typedef struct forks
+{
+    int left;
+    int right;
+}   t_forks;
 
 typedef struct philo
 {
@@ -39,8 +44,8 @@ typedef struct philo
     int num_eat;
     int should_die;
     long long last_meal;
-    int fork_left;
-    int fork_right;
+    t_forks fork;
+    t_info *info;
     pthread_t thread;
 }   t_philo;
 
@@ -50,7 +55,7 @@ typedef struct info
 	int				all_ate;
 	long long		start_time;
     t_input         input;
-	t_philo			philo;
+	t_philo			*philo;
    	
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	msg_lock;
@@ -65,6 +70,6 @@ int init_mutex(t_info *info);
 int init_all(t_info *info, t_input *input);
 void get_input_to_info(t_info *info, t_input *input);
 int create_philo(t_info *info);
-void get_info(t_info *info);
+void get_pro(t_info *info);
 
 #endif

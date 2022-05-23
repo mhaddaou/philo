@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 01:38:21 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/22 04:11:40 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:44:03 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int init_mutex(t_info *info)
 int init_all(t_info *info, t_input *input)
 {
     get_input_to_info(info, input);
-    info->philo = (info->philo *)malloc (sizeof(t_philo) * info->input.n_philo);
-    info->forks = (info->forks *)malloc (sizeof(pthread_mutex_t) * info->input.n_philo);
+    info->philo = (t_philo *)malloc (sizeof(t_philo) * info->input.n_philo);
+    info->forks = (pthread_mutex_t *)malloc (sizeof(pthread_mutex_t) * info->input.n_philo);
     if (!info->philo || !info->forks)
         return (EXIT_FAILURE);
     info->flag = 0;

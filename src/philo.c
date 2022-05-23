@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 04:00:06 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/22 01:40:17 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 14:13:16 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int main (int ac, char **av)
     {
         
         av++;
-        if (get_info(ac, av, &info))
+        if (get_info(ac, av, &input))
             return (EXIT_FAILURE);
-        if (check_info(&info, ac))
+        if (check_info(&input, ac))
             return (EXIT_FAILURE);
-        init_all(&info, &input)
+        init_all(&info, &input);
     }
     else
         printf("non %d", ac);
