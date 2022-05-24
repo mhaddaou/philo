@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:05:23 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/22 01:05:42 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/24 00:20:05 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,12 @@ void ft_putstr_fd(char *str, int fd)
 		write(fd,&str[i], 1);
 		i++;
 	}
+}
+
+void	print_msg(t_philo *philo, char *msg)
+{
+	pthread_mutex_lock(&philo->info->msg_lock);
+	if (!philo->info->flag)
+		printf("%lli\t%i %s", current_time(philo), philo->id + 1, msg);
+	pthread_mutex_unlock(&philo->info->msg_lock);
 }

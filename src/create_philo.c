@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_philo.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 03:25:19 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/24 03:38:54 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/24 00:56:30 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,41 @@
 
 void    take_forks(t_philo *philo)
 {
-    pthread_mutex_lock(&philo->info->forks[philo->])
     
-    
+    int left = philo->fork.left;
+    int right = philo->fork.right;
+    pthread_mutex_lock(&philo->info->forks[left]);
+    print_msg(philo,"has taken a fork\n");
+    pthread_mutex_lock(&philo->info->forks[right]);
+    print_msg(philo, "has taken a fork\n");
+}
+
+void    put_forks(t_philo *philo)
+{
+    int left;
+    int right;
+
+    left = philo->fork.left;
+    right = philo->fork.right;
+    pthread_mutex_unlock(&philo->info->forks[left]);
+    pthread_mutex_unlock(&philo->info->forks[right]);
+}
+
+void eat(t_philo *philo)
+{
+    print_msg(philo, "is eating\n");
+    uslep(philo->info->input.t_eat);
+    philo->last_meal = gettime();
+    philo->num_eat++;
+    if (philo->num_eat == philo->info->input.last_meal)
+        philo->info->all_ate++;
+}
+
+void    sleep_then_think(t_philo *philo)
+{
+    print_msg(philo,"is sleeping\n");
+    uslep(philo->info->input.t_sleep);
+    print_msg(philo, "is thinking\n");
 }
 
 void *action(void *arg)
@@ -28,19 +60,16 @@ void *action(void *arg)
     while (!philo->should_die && !philo->info->flag)
     {
         take_forks(philo);
-        
+        put_forks(philo);
+        eat(philo);
+        sleep_then_think(philo);
+        usleep(10);
     }
     
     return (NULL);
 }
 
-long long gettime(void)
-{
-	t_time	current_time;
 
-	gettimeofday(&current_time, NULL);
-	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
-}
 
 void get_forks(t_philo *philo, int i)
 {
@@ -72,6 +101,7 @@ int create_philo(t_info *info)
     info->start_time = gettime();     
     while (i < info->input.n_philo)
     {
+        info->n_thread = i;
         info->philo[i].id = i;
         info->philo[i].should_die = 0;
         info->philo[i].num_eat = 0;

@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_death.c                                      :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 23:59:38 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/24 00:55:09 by mhaddaou         ###   ########.fr       */
+/*   Created: 2022/05/24 00:14:16 by mhaddaou          #+#    #+#             */
+/*   Updated: 2022/05/24 00:35:34 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopher.h"
 
-
-void    *check_death(void *arg)
+long long gettime(void)
 {
-    t_philo *philo;
+	t_time	current_time;
 
-    philo = (t_philo *)arg;
-    while (!philo->info->flag)
-    {
-        if ((philo->last_meal + philo->info->input.t_die) < gettime())
-        {
-            print_msg(philo,"died\n");
-            philo->should_die = 1;
-            philo->info->flag = 1;
-        }
-        
-    }
-    
-    
-    return (NULL);
+	gettimeofday(&current_time, NULL);
+	return (current_time.tv_sec * 1000 + current_time.tv_usec / 1000);
+}
+
+long long current_time(t_philo *philo)
+{
+    long long time;
+    time = gettime() - philo->info->start_time;
+    return (time);
+}
+
+void uslep(int time)
+{
+    long t;
+
+    t = gettime();
+    while (gettime() - t < time)
+        usleep(1);
     
 }
