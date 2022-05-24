@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   check_death.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 04:00:06 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/23 22:50:27 by mhaddaou         ###   ########.fr       */
+/*   Created: 2022/05/23 23:59:38 by mhaddaou          #+#    #+#             */
+/*   Updated: 2022/05/24 00:05:23 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosopher.h"
 
 
-int main (int ac, char **av)
+void    *check_death(void *arg)
 {
-    t_input input;
-    t_info info;
+    t_philo *philo;
+
+    philo = (t_philo *)arg;
     
-    if (ac ==  5 || ac == 6)
-    {
-        
-        av++;
-        if (get_info(ac, av, &input))
-            return (EXIT_FAILURE);
-        if (check_info(&input, ac))
-            return (EXIT_FAILURE);
-        init_all(&info, &input);
-    }
-    else
-        printf("Error: wrong the number of arguments\n");
+    return (NULL);
     
-    return (EXIT_SUCCESS);
 }

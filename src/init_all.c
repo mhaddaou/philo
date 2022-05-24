@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_all.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/22 01:38:21 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/23 14:44:03 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/23 22:30:12 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int init_all(t_info *info, t_input *input)
     info->all_ate = 0;
     if (init_mutex(info))
         return (EXIT_FAILURE);
-    if (create_philo(info)
+    if (create_philo(info))
         return (EXIT_FAILURE);
     return (EXIT_SUCCESS);
 }
