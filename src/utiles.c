@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utiles.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhaddaou <mhaddaou@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: mhaddaou <mhaddaou@student.1337.com>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/21 23:05:23 by mhaddaou          #+#    #+#             */
-/*   Updated: 2022/05/24 00:20:05 by mhaddaou         ###   ########.fr       */
+/*   Updated: 2022/05/25 23:20:38 by mhaddaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,14 @@ int	ft_atoi(const char *str)
 	return (result * g);
 }
 
-
-void ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-	int i;
-	
-	i = 0;
+	int	i;
 
+	i = 0;
 	while (str[i])
 	{
-		write(fd,&str[i], 1);
+		write(fd, &str[i], 1);
 		i++;
 	}
 }
